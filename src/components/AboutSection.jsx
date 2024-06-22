@@ -20,7 +20,7 @@ const AboutSection = () => {
             typewriterText="I am FullStackDeveloper"
             image={Profile2}
             buttontext="Contact Me"
-            paragraph="A Full Stack Developer who build's Responsive websites & exploring new web design's. Highly skilled in HTML, CSS, Javascript and working knowledge of JavaScript, React and Node Js. Learning Advances JavaScript and ReactJs."
+            paragraph="A Full Stack Developer who build's Responsive websites & exploring new technology. Highly skilled in Frontend & Backend and working knowledge of JavaScript, React and Node Js. Learning Amazon Web Service"
           />
         </div>
         <div className="p-4">

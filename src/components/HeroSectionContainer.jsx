@@ -21,7 +21,7 @@ const HeroSectionContainer = ({
           </h3>
           <p className="text-xl ">
             {paragraph ??
-              "Passionate to Full Stack Developer, Building & Maintaining responsive websites. Exploring new Technology."}
+              "Building & Maintaining responsive websites. Exploring new Technology."}
           </p>
           <Button
             basecolor
