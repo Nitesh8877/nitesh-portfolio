@@ -10,7 +10,7 @@ const LatestProduct = ({ item, index }) => {
       className="flex-1 cursor-pointer relative "
     >
       <LazyLoadImage
-      height="100%"
+      height="100%" 
       width="100%"
         src={item.image}
         effect="blur"

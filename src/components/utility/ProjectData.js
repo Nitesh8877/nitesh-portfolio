@@ -15,7 +15,14 @@ export const ProjectData = [
     image: "/images/certificate.png",
     reverse: false,
     latest: true,
-
+  },
+  {
+    id: 2,
+    title: "Chat App",
+    link: "https://chat-sandy-one.vercel.app/",
+    image: "/images/chat.png",
+    reverse: false,
+    latest: true,
   },
   
 ];
