@@ -13,7 +13,7 @@ export const ProjectData = [
     title: "Create & Verify Certificate App",
     link: "https://create-verify-certificate-frontend.vercel.app/",
     image: "/images/certificate.png",
-    reverse: false,
+    reverse: true,
     latest: true,
   },
   {
