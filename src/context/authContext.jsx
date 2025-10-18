@@ -5,8 +5,8 @@ const AuthContext = createContext();
 
 // Dummy credentials (in production, this should be in backend)
 const ADMIN_CREDENTIALS = {
-  email: 'admin@portfolio.com',
-  password: 'Admin@123'
+  email: 'developer@gmail.com',
+  password: 'Dev@19992003'
 };
 
 export const AuthProvider = ({ children }) => {

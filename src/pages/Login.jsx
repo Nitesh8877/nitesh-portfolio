@@ -40,7 +40,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-baseColor focus:outline-none transition-colors"
-                placeholder="admin@portfolio.com"
+                placeholder="Enter Email"
                 required
               />
             </div>
@@ -72,13 +72,7 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <p className="text-sm text-gray-600 text-center">
-              <strong>Demo Credentials:</strong><br />
-              Email: admin@portfolio.com<br />
-              Password: Admin@123
-            </p>
-          </div>
+         
         </div>
       </div>
     </Container>

@@ -127,19 +127,23 @@ export const Footer = () => {
 
           {/* Services */}
           <motion.div
-            initial={{ x: -10, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            <h4 className="font-bold text-lg mb-4 text-gray-900">Services</h4>
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li>✨ Web Development</li>
-              <li>🎨 UI/UX Design</li>
-              <li>📱 Responsive Design</li>
-              <li>🚀 Performance Optimization</li>
-              <li>🔧 API Integration</li>
-            </ul>
-          </motion.div>
+  initial={{ x: -10, opacity: 0 }}
+  animate={{ x: 0, opacity: 1 }}
+  transition={{ delay: 0.4 }}
+>
+  <h4 className="font-bold text-lg mb-4 text-gray-900">Services</h4>
+  <ul className="space-y-2 text-sm text-gray-700">
+    <li>⚛️ MERN Stack Development</li>
+    <li>⛓️ Blockchain Development</li>
+    <li>🐍 Python Development</li>
+    <li>🧪 Unit Testing & QA</li>
+    <li>✨ Web Development</li>
+    <li>🎨 UI/UX Design</li>
+    <li>📱 Responsive Design</li>
+    <li>🚀 Performance Optimization</li>
+    <li>🔧 API Integration</li>
+  </ul>
+</motion.div>
 
           {/* Contact Info */}
           <motion.div

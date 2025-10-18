@@ -208,21 +208,7 @@ const ContactForm = () => {
             </motion.button>
           </motion.div>
 
-          {/* Info Box */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.45 }}
-            className="bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-lg border-2 border-blue-200 mt-4"
-          >
-            <p className="text-gray-800 font-semibold mb-3">📍 Contact Information</p>
-            <div className="space-y-2 text-gray-700">
-              <p>📧 <span className="font-bold">kumarnitesh88441@gmail.com</span></p>
-              <p>📱 <span className="font-bold">+91-XXXX-XXXX</span></p>
-              <p>📍 <span className="font-bold">Chandigarh, Punjab, India</span></p>
-              <p>🏢 <span className="font-bold">Techabet - Backend Developer</span></p>
-            </div>
-          </motion.div>
+        
         </form>
       </motion.div>
     </div>
