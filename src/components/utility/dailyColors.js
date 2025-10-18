@@ -23,71 +23,249 @@ const COLOR_PALETTE = [
 ];
 
 // Festival Dates with Special Celebration Colors
+// const FESTIVALS = {
+//   1: { 
+//     name: "New Year", 
+//     icon: "🎆", 
+//     event: "Happy New Year!",
+//     bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+//     font: "#ffffff"
+//   },
+//   20: { 
+//     name: "Republic Day", 
+//     icon: "🇮🇳", 
+//     event: "Happy Republic Day!",
+//     bg: "linear-gradient(135deg, #ff6b35 0%, #004e89 100%)",
+//     font: "#ffffff"
+//   },
+//   33: { 
+//     name: "Valentine's Day", 
+//     icon: "❤️", 
+//     event: "Happy Valentine's Day!",
+//     bg: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+//     font: "#ffffff"
+//   },
+//   61: { 
+//     name: "Women's Day", 
+//     icon: "👩", 
+//     event: "Happy Women's Day!",
+//     bg: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+//     font: "#1a1a1a"
+//   },
+//   78: { 
+//     name: "Holi Festival", 
+//     icon: "🎨", 
+//     event: "Happy Holi!",
+//     bg: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+//     font: "#1a1a1a"
+//   },
+//   114: { 
+//     name: "Earth Day", 
+//     icon: "🌍", 
+//     event: "Happy Earth Day!",
+//     bg: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+//     font: "#1a1a1a"
+//   },
+//   152: { 
+//     name: "Buddha Purnima", 
+//     icon: "🙏", 
+//     event: "Buddha Purnima!",
+//     bg: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+//     font: "#1a1a1a"
+//   },
+//   183: { 
+//     name: "Teachers Day", 
+//     icon: "👨‍🏫", 
+//     event: "Happy Teachers Day!",
+//     bg: "linear-gradient(135deg, #ffa751 0%, #ffe259 100%)",
+//     font: "#1a1a1a"
+//   },
+//   229: { 
+//     name: "Diwali", 
+//     icon: "🪔", 
+//     event: "Happy Diwali!",
+//     bg: "linear-gradient(135deg, #ffa751 0%, #ffe259 100%)",
+//     font: "#1a1a1a"
+//   },
+//   299: { 
+//     name: "Christmas", 
+//     icon: "🎄", 
+//     event: "Merry Christmas!",
+//     bg: "linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)",
+//     font: "#ffffff"
+//   },
+//   365: { 
+//     name: "New Year Eve", 
+//     icon: "🎉", 
+//     event: "Happy New Year Eve!",
+//     bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+//     font: "#ffffff"
+//   },
+// };
+
 const FESTIVALS = {
   1: { 
     name: "New Year", 
     icon: "🎆", 
-    event: "Happy New Year!",
+    event: "Happy New Year 2025!",
     bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     font: "#ffffff"
   },
-  20: { 
+  12: { 
+    name: "Swami Vivekananda Jayanti", 
+    icon: "🧠", 
+    event: "Swami Vivekananda Jayanti",
+    bg: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
+    font: "#1a1a1a"
+  },
+  14: { 
+    name: "Makar Sankranti / Pongal", 
+    icon: "🌾", 
+    event: "Happy Makar Sankranti / Pongal!",
+    bg: "linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)",
+    font: "#1a1a1a"
+  },
+  23: { 
+    name: "Netaji Subhas Chandra Bose Jayanti", 
+    icon: "🇮🇳", 
+    event: "Netaji Jayanti",
+    bg: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+    font: "#1a1a1a"
+  },
+  26: { 
     name: "Republic Day", 
     icon: "🇮🇳", 
     event: "Happy Republic Day!",
-    bg: "linear-gradient(135deg, #ff6b35 0%, #004e89 100%)",
-    font: "#ffffff"
+    bg: "linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%)",
+    font: "#000000"
   },
-  33: { 
+  45: { 
     name: "Valentine's Day", 
     icon: "❤️", 
     event: "Happy Valentine's Day!",
     bg: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
     font: "#ffffff"
   },
-  61: { 
-    name: "Women's Day", 
+  59: { 
+    name: "Maha Shivaratri", 
+    icon: "🕉️", 
+    event: "Maha Shivaratri",
+    bg: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
+    font: "#ffffff"
+  },
+  67: { 
+    name: "International Women's Day", 
     icon: "👩", 
     event: "Happy Women's Day!",
     bg: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
     font: "#1a1a1a"
   },
-  78: { 
+  83: { 
     name: "Holi Festival", 
     icon: "🎨", 
     event: "Happy Holi!",
     bg: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
     font: "#1a1a1a"
   },
-  114: { 
+  112: { 
     name: "Earth Day", 
     icon: "🌍", 
     event: "Happy Earth Day!",
     bg: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
     font: "#1a1a1a"
   },
-  152: { 
-    name: "Buddha Purnima", 
+  119: { 
+    name: "Ram Navami", 
     icon: "🙏", 
-    event: "Buddha Purnima!",
+    event: "Ram Navami",
+    bg: "linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)",
+    font: "#1a1a1a"
+  },
+  130: { 
+    name: "Buddha Purnima", 
+    icon: "🪷", 
+    event: "Buddha Purnima",
     bg: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
     font: "#1a1a1a"
   },
-  183: { 
+  138: { 
+    name: "Rabindranath Tagore Jayanti", 
+    icon: "🖋️", 
+    event: "Tagore Jayanti",
+    bg: "linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)",
+    font: "#1a1a1a"
+  },
+  194: { 
+    name: "Muharram", 
+    icon: "☪️", 
+    event: "Muharram",
+    bg: "linear-gradient(135deg, #232526 0%, #414345 100%)",
+    font: "#ffffff"
+  },
+  227: { 
+    name: "Independence Day", 
+    icon: "🎉", 
+    event: "Happy Independence Day!",
+    bg: "linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%)",
+    font: "#000000"
+  },
+  249: { 
     name: "Teachers Day", 
     icon: "👨‍🏫", 
     event: "Happy Teachers Day!",
     bg: "linear-gradient(135deg, #ffa751 0%, #ffe259 100%)",
     font: "#1a1a1a"
   },
-  229: { 
-    name: "Diwali", 
+  275: { 
+    name: "Gandhi Jayanti", 
+    icon: "👓", 
+    event: "Gandhi Jayanti",
+    bg: "linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%)",
+    font: "#1a1a1a"
+  },
+  281: { 
+    name: "Navratri Begins", 
     icon: "🪔", 
-    event: "Happy Diwali!",
-    bg: "linear-gradient(135deg, #ffa751 0%, #ffe259 100%)",
+    event: "Navratri Celebrations",
+    bg: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+    font: "#1a1a1a"
+  },
+  289: { 
+    name: "Dussehra", 
+    icon: "🏹", 
+    event: "Happy Dussehra!",
+    bg: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
     font: "#1a1a1a"
   },
   299: { 
+    name: "Diwali", 
+    icon: "🪔", 
+    event: "Happy Diwali!",
+    bg: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+    font: "#1a1a1a"
+  },
+  300: { 
+    name: "Govardhan Puja", 
+    icon: "⛰️", 
+    event: "Govardhan Puja",
+    bg: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+    font: "#1a1a1a"
+  },
+  301: { 
+    name: "Bhai Dooj", 
+    icon: "👫", 
+    event: "Bhai Dooj",
+    bg: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
+    font: "#1a1a1a"
+  },
+  313: { 
+    name: "Guru Nanak Jayanti", 
+    icon: "🪯", 
+    event: "Guru Nanak Jayanti",
+    bg: "linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)",
+    font: "#1a1a1a"
+  },
+  359: { 
     name: "Christmas", 
     icon: "🎄", 
     event: "Merry Christmas!",

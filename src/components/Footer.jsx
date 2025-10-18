@@ -1,19 +1,17 @@
+// src/components/Footer.jsx - UPDATED
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { HiMenuAlt3 } from "react-icons/hi";
-import { GrFormClose } from "react-icons/gr";
-import { useAuth } from "../context/authContext";
-import { MdAdminPanelSettings } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { getCurrentDayColors } from "../components/utility/dailyColors";
 import { motion } from "framer-motion";
+import { subscribeEmail, isEmailSubscribed } from "../components/utility/dataStorage";
+import toast from "react-hot-toast";
 
-
-// ==================== FOOTER ====================
 export const Footer = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [colors, setColors] = useState(null);
+  const [isAlreadySubscribed, setIsAlreadySubscribed] = useState(false);
 
   useEffect(() => {
     const dailyColors = getCurrentDayColors();
@@ -22,15 +20,55 @@ export const Footer = () => {
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (!email) return;
+    
+    if (!email) {
+      toast.error("Please enter your email");
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email");
+      return;
+    }
+
+    // Check if already subscribed
+    if (isEmailSubscribed(email)) {
+      toast.error("This email is already subscribed!");
+      setIsAlreadySubscribed(true);
+      return;
+    }
 
     setLoading(true);
-    setTimeout(() => {
-      setSubscribed(true);
-      setEmail("");
+    try {
+      // Subscribe email
+      const result = subscribeEmail(email);
+
+      if (result.success) {
+        setSubscribed(true);
+        setEmail("");
+        setIsAlreadySubscribed(false);
+        toast.success("✅ " + result.message);
+        console.log("📧 Email Subscriber:", result.subscriber);
+
+        setTimeout(() => {
+          setSubscribed(false);
+        }, 4000);
+      } else {
+        if (result.duplicate) {
+          setIsAlreadySubscribed(true);
+          toast.error(result.message);
+        } else {
+          toast.error(result.message);
+        }
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to subscribe. Please try again.");
+    } finally {
       setLoading(false);
-      setTimeout(() => setSubscribed(false), 3000);
-    }, 1000);
+    }
   };
 
   if (!colors) return null;
@@ -53,7 +91,9 @@ export const Footer = () => {
           className="mb-12 p-8 rounded-2xl shadow-lg bg-gradient-to-r from-green-50 to-blue-50"
         >
           <h3 className="text-2xl font-bold mb-4 text-gray-900">📬 Stay Updated</h3>
-          <p className="text-gray-700 mb-6">Get latest updates on projects and blog posts</p>
+          <p className="text-gray-700 mb-6">
+            Get latest updates on projects and blog posts. Your email will be saved securely.
+          </p>
           <form onSubmit={handleSubscribe} className="flex gap-3 max-w-md">
             <input
               type="email"
@@ -61,16 +101,16 @@ export const Footer = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
               className="flex-1 px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-green-500 focus:outline-none text-gray-900"
-              disabled={loading}
+              disabled={loading || subscribed}
             />
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              disabled={loading}
-              className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors font-bold disabled:opacity-50"
+              disabled={loading || subscribed}
+              className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors font-bold disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? "Subscribing..." : "Subscribe"}
+              {loading ? "..." : subscribed ? "✓" : "Subscribe"}
             </motion.button>
           </form>
           {subscribed && (
@@ -79,9 +119,28 @@ export const Footer = () => {
               animate={{ opacity: 1 }}
               className="text-green-600 font-semibold mt-3"
             >
-              ✅ Successfully subscribed!
+              ✅ Successfully subscribed! Check your email for confirmation.
             </motion.p>
           )}
+          {isAlreadySubscribed && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-blue-600 font-semibold mt-3"
+            >
+              ℹ️ This email is already in our newsletter list.
+            </motion.p>
+          )}
+          
+          {/* Info Box */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mt-4 bg-white/60 backdrop-blur p-3 rounded-lg text-sm text-gray-700"
+          >
+            💾 <strong>Note:</strong> All subscriber emails are saved locally in your browser for privacy.
+          </motion.div>
         </motion.div>
 
         {/* Main Content Grid */}
@@ -95,8 +154,12 @@ export const Footer = () => {
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
               Nitesh Kumar Ram
             </h2>
-            <p className="text-gray-700 font-medium">🚀 Full Stack Developer | 💻 Problem Solver | 🌐 Tech Enthusiast</p>
-            <p className="text-gray-600 text-sm mt-4">📍 Chandigarh, Punjab | 🏢 Techabet Backend Developer</p>
+            <p className="text-gray-700 font-medium">
+              🚀 Full Stack Developer | 💻 Problem Solver | 🌐 Tech Enthusiast
+            </p>
+            <p className="text-gray-600 text-sm mt-4">
+              📍 Chandigarh, Punjab | 🏢 Techabet Backend Developer
+            </p>
           </motion.div>
 
           {/* Quick Links */}
@@ -127,23 +190,23 @@ export const Footer = () => {
 
           {/* Services */}
           <motion.div
-  initial={{ x: -10, opacity: 0 }}
-  animate={{ x: 0, opacity: 1 }}
-  transition={{ delay: 0.4 }}
->
-  <h4 className="font-bold text-lg mb-4 text-gray-900">Services</h4>
-  <ul className="space-y-2 text-sm text-gray-700">
-    <li>⚛️ MERN Stack Development</li>
-    <li>⛓️ Blockchain Development</li>
-    <li>🐍 Python Development</li>
-    <li>🧪 Unit Testing & QA</li>
-    <li>✨ Web Development</li>
-    <li>🎨 UI/UX Design</li>
-    <li>📱 Responsive Design</li>
-    <li>🚀 Performance Optimization</li>
-    <li>🔧 API Integration</li>
-  </ul>
-</motion.div>
+            initial={{ x: -10, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            <h4 className="font-bold text-lg mb-4 text-gray-900">Services</h4>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li>⚛️ MERN Stack Development</li>
+              <li>⛓️ Blockchain Development</li>
+              <li>🐍 Python Development</li>
+              <li>🧪 Unit Testing & QA</li>
+              <li>✨ Web Development</li>
+              <li>🎨 UI/UX Design</li>
+              <li>📱 Responsive Design</li>
+              <li>🚀 Performance Optimization</li>
+              <li>🔧 API Integration</li>
+            </ul>
+          </motion.div>
 
           {/* Contact Info */}
           <motion.div
@@ -189,6 +252,5 @@ export const Footer = () => {
     </motion.footer>
   );
 };
-
 
 export default Footer;

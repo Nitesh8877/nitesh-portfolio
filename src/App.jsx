@@ -16,6 +16,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "../src/context/authContext";
 import { getCurrentDayColors, getDayOfYear } from "../src/components/utility/dailyColors";
 import { motion } from "framer-motion";
+import DataViewer from "./pages/DataViewer";
 
 function App() {
   const [dailyColors, setDailyColors] = useState(null);
@@ -89,6 +90,15 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+                path="/data-viewer"
+                element={
+                  <ProtectedRoute>
+                    <DataViewer />
+                  </ProtectedRoute>
+                }
+              />
+              
           </Routes>
         </section>
 

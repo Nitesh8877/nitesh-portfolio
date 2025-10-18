@@ -1,3 +1,4 @@
+// src/components/ContactForm.jsx - UPDATED
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -5,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import { saveContactFormSubmission } from "../components/utility/dataStorage";
 
 const ContactForm = () => {
   const navigate = useNavigate();
@@ -29,16 +31,22 @@ const ContactForm = () => {
   const submit = async (data) => {
     setLoading(true);
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Save form data to localStorage
+      const savedData = saveContactFormSubmission(data);
 
-      toast.success("✅ Message sent successfully! I'll reply soon.");
-      reset();
-      
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      if (savedData) {
+        toast.success("✅ Message saved successfully! I'll reply soon.");
+        console.log("📝 Form Data Saved:", savedData);
+        reset();
+
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } else {
+        throw new Error("Failed to save data");
+      }
     } catch (error) {
+      console.error("Error:", error);
       toast.error("❌ Failed to send message. Please try again.");
     } finally {
       setLoading(false);
@@ -58,7 +66,7 @@ const ContactForm = () => {
         </h2>
 
         <p className="text-center text-gray-700 font-semibold mb-8">
-          Have a question or project idea? Let's connect!
+          Have a question or project idea? Let's connect! Your message will be saved.
         </p>
 
         <form onSubmit={handleSubmit(submit)} className="flex flex-col gap-5">
@@ -198,7 +206,7 @@ const ContactForm = () => {
                   >
                     ⏳
                   </motion.span>
-                  Sending...
+                  Sending & Saving...
                 </>
               ) : (
                 <>
@@ -208,7 +216,17 @@ const ContactForm = () => {
             </motion.button>
           </motion.div>
 
-        
+          {/* Info Message */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded"
+          >
+            <p className="text-sm text-blue-900 font-medium">
+              💾 Your message will be saved securely in the browser storage and backed up locally.
+            </p>
+          </motion.div>
         </form>
       </motion.div>
     </div>
